@@ -1,4 +1,4 @@
-import 'package:balcoder_flutter/home/home_page.dart';
+import 'package:balcoder_flutter/ui/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

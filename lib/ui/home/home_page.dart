@@ -1,4 +1,5 @@
-import 'package:balcoder_flutter/user/user_page.dart';
+import 'package:balcoder_flutter/ui/user/user_page.dart';
+import 'package:balcoder_flutter/ui/user/user_page.dart';
 import 'package:balcoder_flutter/utils/theme/widgets/main_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Hola mundo'),
+        const Text('Hola mundo'), 
         Container(
           height: 200,
           padding: const EdgeInsets.all(12),

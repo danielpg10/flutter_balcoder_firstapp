@@ -1,9 +1,9 @@
-import 'package:balcoder_flutter/home/home_page.dart';
+import 'package:balcoder_flutter/ui/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
   static const String home = '/';
-  static const String form = '/form';
+  static const String form = '/userPage';
   
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {

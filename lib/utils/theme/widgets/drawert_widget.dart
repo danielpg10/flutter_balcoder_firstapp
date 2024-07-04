@@ -1,12 +1,14 @@
-import 'package:balcoder_flutter/home/home_page.dart';
-import 'package:balcoder_flutter/utils/theme/widgets/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:balcoder_flutter/ui/home/home_page.dart';
+import 'package:balcoder_flutter/ui/user/user_page.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  const DrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String username = 'tu_nombre_de_usuario'; // Aquí debes tener el nombre de usuario necesario
+
     return ListView(
       children: [
         const DrawerHeader(
@@ -17,7 +19,7 @@ class DrawerWidget extends StatelessWidget {
           leading: const Icon(Icons.home),
           title: const Text('Inicio'),
           onTap: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const MyHomePage()),
             );
@@ -27,8 +29,10 @@ class DrawerWidget extends StatelessWidget {
           leading: const Icon(Icons.edit_document),
           title: const Text('Form'),
           onTap: () {
-            
-            Navigator.pushNamed(context, AppRoutes.form);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => UserPage(username: username)),
+            );
           },
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:balcoder_flutter/utils/theme/widgets/drawert_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -38,8 +39,9 @@ class _MainScaffoldState extends State<MainScaffold> {
               icon: const Icon(Icons.arrow_back),
             ),
       ),
-      drawer: widget.showDrawer ? const Drawer() : null,
+      drawer: widget.showDrawer ? const Drawer(child: DrawerWidget()) : null,
       body: widget.child,
     );
-  }
+  } 
 }
+  
