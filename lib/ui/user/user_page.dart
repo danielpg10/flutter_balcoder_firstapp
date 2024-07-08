@@ -1,7 +1,7 @@
 import 'package:balcoder_flutter/ui/user/widgets/popup_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:balcoder_flutter/utils/theme/widgets/main_scaffold.dart';
-import 'package:balcoder_flutter/utils/theme/widgets/mixins/text_form_validator_mixin.dart';
+import 'package:balcoder_flutter/utils/widgets/main_scaffold.dart';
+import 'package:balcoder_flutter/utils/widgets/mixins/text_form_validator_mixin.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key, required this.username}) : super(key: key);
@@ -104,7 +104,7 @@ class _UserPageState extends State<UserPage> with TextFieldValidators {
                 if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("¡Formulario completado!"),
+                      content: Text("¡Formulario completo!"),
                       backgroundColor: Colors.green,
                     ),
                   );

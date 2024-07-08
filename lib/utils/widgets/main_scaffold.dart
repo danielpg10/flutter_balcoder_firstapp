@@ -1,4 +1,5 @@
-import 'package:balcoder_flutter/utils/theme/widgets/drawert_widget.dart';
+import 'package:balcoder_flutter/utils/widgets/appbar_widget.dart';
+import 'package:balcoder_flutter/utils/widgets/drawert_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -22,7 +23,8 @@ class _MainScaffoldState extends State<MainScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.titlePage),
+        backgroundColor: const Color(0XFFADD9E6).withOpacity(0.65),
+        title: const AppbarWidget(),
         leading: widget.showDrawer 
           ? Builder(
               builder: (context) => IconButton(
