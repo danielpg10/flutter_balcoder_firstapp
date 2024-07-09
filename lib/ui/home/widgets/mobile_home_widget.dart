@@ -1,3 +1,4 @@
+import 'package:balcoder_flutter/ui/home/widgets/testimonial_widget.dart';
 import 'package:flutter/material.dart';
 
 class MobileHomeWidgets extends StatefulWidget {
@@ -10,6 +11,6 @@ class MobileHomeWidgets extends StatefulWidget {
 class _MobileHomeWidgetsState extends State<MobileHomeWidgets> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const TestimonialWidget();
   }
 }
