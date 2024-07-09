@@ -41,8 +41,8 @@ class _RegisterState extends State<Register> with TextFieldValidators {
             child: Form(
               key: _formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,  
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Inscríbete',
@@ -51,7 +51,7 @@ class _RegisterState extends State<Register> with TextFieldValidators {
                       color: Color(0xFF152361),
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -61,13 +61,13 @@ class _RegisterState extends State<Register> with TextFieldValidators {
                       color: Color(0xFF666F98),
                       fontWeight: FontWeight.w500,
                     ),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 16),
                   Container(
                     width: 300,
                     child: TextFormField(
-                      controller: _emailController,
+                      controller: _nameController,
                       decoration: const InputDecoration(
                         labelText: 'Nombre completo',
                         hintText: 'Ingresa tu nombre completo',
