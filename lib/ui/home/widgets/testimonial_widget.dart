@@ -37,7 +37,29 @@ class _TestimonialWidgetState extends State<TestimonialWidget> {
     setState(() {
       if(_currentPage < _pageItems.length - 1) {
         _currentPage++;
+      } else {
+        _currentPage = 0;
       }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void _previousPage() {
+    setState(() {
+      if (_currentPage > 0) {
+        _currentPage--;
+      } else {
+        _currentPage = _pageItems.length - 1;
+      }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     });
   }
 
