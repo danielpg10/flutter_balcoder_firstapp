@@ -100,6 +100,22 @@ class _TestimonialWidgetState extends State<TestimonialWidget> {
             }).toList(),
           ),
         ),
+        Positioned(
+          left: 10,
+          top: 50,
+          child: IconButton(
+            onPressed: _previousPage, 
+            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
+          ),
+        ),
+        Positioned(
+          right: 10,
+          top: 50,
+          child: IconButton(
+            onPressed: _nextPage, 
+            icon: const Icon(Icons.arrow_forward, color: Colors.white, size: 30),
+          ),
+        ),
       ],
     );
   }
