@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Aplicación',
       theme: ThemeData(
-     
       ),
       home: MyHomePage(title: 'Inicio'),
     );
