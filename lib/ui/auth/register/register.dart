@@ -21,6 +21,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _rpasswordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
-            height: 800,
+            height: 700,
             width: 400,
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
@@ -85,6 +86,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      maxLength: 35,
                       validator: validateName,
                     ),
                   ),
@@ -102,6 +104,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      maxLength: 30,
                       validator: validateEmail,
                     ),
                   ),
@@ -119,6 +122,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      maxLength: 13,
                       validator: validateNumber,
                     ),
                   ),
@@ -136,6 +140,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      maxLength: 3,
                       validator: validateAge,
                     ),
                   ),
@@ -144,20 +149,31 @@ class _RegisterState extends State<Register> with TextFormValidator {
                     width: 300,
                     child: TextFormField(
                       controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: "Contraseña",
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                        labelText:  "Contraseña",
                         hintText: "Por favor, ingresa tu contraseña",
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           fontSize: 18,
                           color: Color(0xFF666F98),
                           fontWeight: FontWeight.bold,
                         ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureText ? Icons.visibility : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
                       ),
+                      maxLength: 20,
                       validator: validatePassword,
                     ),
                   ),
-                  const SizedBox(height: 16),
+          /*         const SizedBox(height: 16),
                   Container(
                     width: 300,
                     child: TextFormField(
@@ -174,7 +190,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                       ),
                       validator: validateRPassword,
                     ),
-                  ),
+                  ), */
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: () {

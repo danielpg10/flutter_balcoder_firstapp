@@ -17,6 +17,7 @@ class _LoginState extends State<Login> with TextFormValidator {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +71,9 @@ class _LoginState extends State<Login> with TextFormValidator {
                           color: Color(0xFF666F98),
                           fontWeight: FontWeight.bold,
                         ),
+                        counterText: '',
                       ),
+                      maxLength: 30,
                       validator: validateEmail,
                     ),
                   ),
@@ -79,16 +82,28 @@ class _LoginState extends State<Login> with TextFormValidator {
                     width: 300,
                     child: TextFormField(
                       controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
                         labelText: "Contraseña",
                         hintText: "Por favor, ingresa tu contraseña",
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           fontSize: 18,
                           color: Color(0xFF666F98),
                           fontWeight: FontWeight.bold,
                         ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureText ? Icons.visibility : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          }
+                        ),
+                        counterText: '',
                       ),
+                      maxLength: 20,
                       validator: validatePassword,
                     ),
                   ),

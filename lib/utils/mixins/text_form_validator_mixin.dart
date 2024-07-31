@@ -29,7 +29,7 @@ String? validateEmail(String? value) {
 String? validateNumber(String? value) {
   final numericRegex = RegExp(r'^\d+$');
   if (value == null || value.isEmpty) {
-    return 'Por favor, ingresa tu edad';
+    return 'Por favor, ingresa tu numero';
   } else if(!numericRegex.hasMatch(value)) {
     return 'Por favor, ingresa solo numeros';
   }
