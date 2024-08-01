@@ -116,7 +116,7 @@ class _LoginState extends State<Login> with TextFormValidator {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(
+                            builder: (context) => GalleryWidget(
                               isAuthenticated: isAuthenticated,
                             ),
                           ),
