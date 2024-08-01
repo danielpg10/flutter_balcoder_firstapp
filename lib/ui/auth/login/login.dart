@@ -5,6 +5,7 @@ import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
 import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/text_form_validator_mixin.dart';
+import 'package:balcoder_flutter_second/ui/gallery/gallery_widget.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -111,10 +112,13 @@ class _LoginState extends State<Login> with TextFormValidator {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("¡Ingresaste a tu cuenta exitosamente!"),
-                            backgroundColor: Colors.green,
+                        bool isAuthenticated = true; 
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              isAuthenticated: isAuthenticated,
+                            ),
                           ),
                         );
                       }

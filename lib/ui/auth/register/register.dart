@@ -173,7 +173,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                       validator: validatePassword,
                     ),
                   ),
-          /*         const SizedBox(height: 16),
+          /*      const SizedBox(height: 16),
                   Container(
                     width: 300,
                     child: TextFormField(
