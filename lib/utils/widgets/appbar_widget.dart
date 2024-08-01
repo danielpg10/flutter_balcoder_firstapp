@@ -57,8 +57,6 @@ class _AppbarWidgetState extends State<AppbarWidget> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Inicio')));
                 }, child: Text("Inicio")),
                 SizedBox(width: 20),
-                TextButton(onPressed: () {}, child: Text("Nosotros")),
-                SizedBox(width: 20),
                 TextButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
