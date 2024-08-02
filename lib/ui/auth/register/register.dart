@@ -16,10 +16,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> with TextFormValidator {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _numberController = TextEditingController();
-  TextEditingController _ageController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController _rpasswordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 
@@ -91,6 +89,25 @@ class _RegisterState extends State<Register> with TextFormValidator {
                     ),
                   ),
                   const SizedBox(height: 16),
+                    Container(
+                      width: 300,
+                      child: TextFormField(
+                        controller: _dateController,
+                        decoration: const InputDecoration(
+                          labelText: "Fecha de nacimiento",
+                          hintText: "dd/mm/yyyy",
+                          labelStyle: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF666F98),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        maxLength: 10,
+                        validator: validateDate,
+                        keyboardType: TextInputType.datetime,
+                      ),
+                    ),
+                  const SizedBox(height: 16),
                   Container(
                     width: 300,
                     child: TextFormField(
@@ -106,42 +123,6 @@ class _RegisterState extends State<Register> with TextFormValidator {
                       ),
                       maxLength: 30,
                       validator: validateEmail,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: _numberController,
-                      decoration: const InputDecoration(
-                        labelText: "Numero telefonico",
-                        hintText: "Por favor, ingresa tu numero telefonico",
-                        labelStyle: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF666F98),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      maxLength: 13,
-                      validator: validateNumber,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: _ageController,
-                      decoration: const InputDecoration(
-                        labelText: "Edad",
-                        hintText: "Por favor, ingresa tu edad",
-                        labelStyle: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF666F98),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      maxLength: 3,
-                      validator: validateAge,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -173,24 +154,6 @@ class _RegisterState extends State<Register> with TextFormValidator {
                       validator: validatePassword,
                     ),
                   ),
-          /*      const SizedBox(height: 16),
-                  Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: _rpasswordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: "Repite contraseña",
-                        hintText: "Por favor, repite tu contraseña",
-                        labelStyle: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF666F98),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      validator: validateRPassword,
-                    ),
-                  ), */
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: () {

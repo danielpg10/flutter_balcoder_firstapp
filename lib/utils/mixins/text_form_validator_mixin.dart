@@ -26,23 +26,38 @@ String? validateEmail(String? value) {
   }
 }
 
-String? validateNumber(String? value) {
-  final numericRegex = RegExp(r'^\d+$');
+String? validateDate(String? value) {
   if (value == null || value.isEmpty) {
-    return 'Por favor, ingresa tu numero';
-  } else if(!numericRegex.hasMatch(value)) {
-    return 'Por favor, ingresa solo numeros';
+    return 'Por favor, ingresa tu fecha de nacimiento';
   }
+
+  final dateRegex = RegExp(r'^\d{2}/\d{2}/\d{4}$');
+  if (!dateRegex.hasMatch(value)) {
+    return 'Formato de fecha inválido. (dd/mm/yyyy)';
+  }
+
+  final parts = value.split('/');
+  final day = int.tryParse(parts[0]);
+  final month = int.tryParse(parts[1]);
+  final year = int.tryParse(parts[2]);
+
+  if (day == null || month == null || year == null) {
+    return 'Por favor, pon una fecha';
+  }
+
+  final date = DateTime(year, month, day);
+  if (date.year != year || date.month != month || date.day != day) {
+    return 'Por favor, pon una fecha valida';
+  }
+
+  final today = DateTime.now();
+  if (date.isAfter(today)) {
+    return 'La fecha no puede ser en el futuro';
+  }
+
+  return null;
 }
 
-String? validateAge(String? value) {
-  final ageRegex = RegExp(r'^\d+$');
-  if (value == null || value.isEmpty) {
-    return 'Por favor, ingresa tu edad';
-  } else if(!ageRegex.hasMatch(value)) {
-    return 'Por favor, ingresa una edad valida';
-  }
-}
 
 String? validatePassword(String? value) {
   final passwordRegex = RegExp(r'^[a-zA-Z0-9 ]+$'); 
