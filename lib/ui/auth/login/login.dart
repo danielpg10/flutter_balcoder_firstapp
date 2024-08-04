@@ -1,4 +1,5 @@
 import 'package:balcoder_flutter_second/ui/auth/register/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
 import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
@@ -6,6 +7,7 @@ import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/text_form_validator_mixin.dart';
 import 'package:balcoder_flutter_second/ui/gallery/gallery_widget.dart';
+import 'package:balcoder_flutter_second/main.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -157,5 +159,23 @@ class _LoginState extends State<Login> with TextFormValidator {
         ),
       ),
     );
+  }
+
+  _testAuth() async {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
+
+          await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).
+          then((value) {
+            if(value.user != null){
+              print(value.user!.uid);
+            } else {
+              print('Este usuario no existe');
+            }
+          });
+
+        } else {
+          print('ERROR');
+          }
   }
 }

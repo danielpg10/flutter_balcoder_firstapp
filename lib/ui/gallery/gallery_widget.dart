@@ -1,3 +1,4 @@
+import 'package:balcoder_flutter_second/main.dart';
 import 'package:balcoder_flutter_second/ui/auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
@@ -111,19 +112,35 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   }
 
   Widget _buildLoginPrompt(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Debes estar registrado para ver el contenido"),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+              },
+              child: Text("Iniciar sesion"),
+            ),
+          ],
+        ),
       ),
     );
   }

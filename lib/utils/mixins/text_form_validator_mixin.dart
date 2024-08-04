@@ -67,13 +67,4 @@ String? validatePassword(String? value) {
       return 'Por favor, introduce una contraseña valida';
     }
   }
-
-String? validateRPassword(String? value) {
-  final passwordRegex = RegExp(r'^[a-zA-Z0-9 ]+$'); 
-    if (value == null || value.isEmpty) {
-      return 'Por favor, ingresa una contraseña';
-    } else if(!passwordRegex.hasMatch(value)){
-      return 'Por favor, introduce una contraseña valida';
-    }
-  }
 }

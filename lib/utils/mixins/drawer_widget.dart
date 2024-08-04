@@ -12,7 +12,7 @@ class DrawerWidget extends StatefulWidget {
 
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-
+  bool _isAuthenticated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +50,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
             },
+          ),
+          ListTile(
+            leading: const Icon(Icons.photo, color: Colors.black),
+            title: const Text("Galeria"),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryWidget(isAuthenticated: _isAuthenticated)));
+            }
           ),
         ],
       ),
