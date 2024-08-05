@@ -114,15 +114,7 @@ class _LoginState extends State<Login> with TextFormValidator {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        bool isAuthenticated = true; 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => GalleryWidget(
-                              isAuthenticated: isAuthenticated,
-                            ),
-                          ),
-                        );
+                        _testAuth();
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -161,21 +153,34 @@ class _LoginState extends State<Login> with TextFormValidator {
     );
   }
 
+  void _navigateToGallery() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GalleryWidget(isAuthenticated: true),
+      ),
+    );
+  }
+
   _testAuth() async {
-    if (_emailController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty) {
+    if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
 
-          await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).
-          then((value) {
-            if(value.user != null){
-              print(value.user!.uid);
-            } else {
-              print('Este usuario no existe');
-            }
-          });
-
+        if (userCredential.user != null) {
+          print(userCredential.user!.uid);
+          _navigateToGallery();
         } else {
-          print('ERROR');
-          }
+          print('Este usuario no existe');
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
+    } else {
+      print('ERROR');
+    }
   }
 }
