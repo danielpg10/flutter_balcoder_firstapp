@@ -26,7 +26,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             height: 100, 
             child: const DrawerHeader(
               decoration: BoxDecoration(
-                color: Color(0xFF0040FF),
+                color: Color.fromARGB(255, 93, 173, 230),
               ),
               child: Text(
                 'Menu',
@@ -52,7 +52,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.photo, color: Colors.black),
+            leading: const Icon(Icons.contact_phone_outlined, color: Colors.black),
             title: const Text("Galeria"),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryWidget(isAuthenticated: _isAuthenticated)));

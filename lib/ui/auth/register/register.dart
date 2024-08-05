@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
 import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
 import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
@@ -89,24 +90,24 @@ class _RegisterState extends State<Register> with TextFormValidator {
                     ),
                   ),
                   const SizedBox(height: 16),
-                    Container(
-                      width: 300,
-                      child: TextFormField(
-                        controller: _dateController,
-                        decoration: const InputDecoration(
-                          labelText: "Fecha de nacimiento",
-                          hintText: "dd/mm/yyyy",
-                          labelStyle: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF666F98),
-                            fontWeight: FontWeight.bold,
-                          ),
+                  Container(
+                    width: 300,
+                    child: TextFormField(
+                      controller: _dateController,
+                      decoration: const InputDecoration(
+                        labelText: "Fecha de nacimiento",
+                        hintText: "dd/mm/yyyy",
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF666F98),
+                          fontWeight: FontWeight.bold,
                         ),
-                        maxLength: 10,
-                        validator: validateDate,
-                        keyboardType: TextInputType.datetime,
                       ),
+                      maxLength: 10,
+                      validator: validateDate,
+                      keyboardType: TextInputType.datetime,
                     ),
+                  ),
                   const SizedBox(height: 16),
                   Container(
                     width: 300,
@@ -132,7 +133,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                       controller: _passwordController,
                       obscureText: _obscureText,
                       decoration: InputDecoration(
-                        labelText:  "Contraseña",
+                        labelText: "Contraseña",
                         hintText: "Por favor, ingresa tu contraseña",
                         labelStyle: const TextStyle(
                           fontSize: 18,
@@ -158,12 +159,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("¡Te has registrado correctamente!"),
-                            backgroundColor: Colors.green,
-                          ),
-                        );
+                        _createUser();
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -183,7 +179,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
                     },
                     child: const Text(
-                      '¿Ya te has registrado?. Inicia sesión aquí.',
+                      '¿Ya te has registrado? Inicia sesión aquí.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
@@ -200,5 +196,27 @@ class _RegisterState extends State<Register> with TextFormValidator {
         ),
       ),
     );
+  }
+
+  _createUser() async {
+    if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+
+        if (userCredential.user != null) {
+          print('Usuario registrado con UID: ${userCredential.user!.uid}');
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+        } else {
+          print('No se pudo registrar el usuario');
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
+    } else {
+      print('ERROR');
+    }
   }
 }
