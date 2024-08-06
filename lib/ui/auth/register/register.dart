@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
 import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
 import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
@@ -84,6 +85,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           color: Color(0xFF666F98),
                           fontWeight: FontWeight.bold,
                         ),
+                        counterText: '',
                       ),
                       maxLength: 35,
                       validator: validateName,
@@ -102,6 +104,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           color: Color(0xFF666F98),
                           fontWeight: FontWeight.bold,
                         ),
+                        counterText: '',
                       ),
                       maxLength: 10,
                       validator: validateDate,
@@ -121,6 +124,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                           color: Color(0xFF666F98),
                           fontWeight: FontWeight.bold,
                         ),
+                        counterText: '',
                       ),
                       maxLength: 30,
                       validator: validateEmail,
@@ -150,6 +154,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
                             });
                           },
                         ),
+                        counterText: '',
                       ),
                       maxLength: 20,
                       validator: validatePassword,
@@ -208,6 +213,12 @@ class _RegisterState extends State<Register> with TextFormValidator {
 
         if (userCredential.user != null) {
           print('Usuario registrado con UID: ${userCredential.user!.uid}');
+          await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+            'name': _nameController.text,
+            'email': _emailController.text,
+            'date_of_birth': _dateController.text,
+          });
+
           Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
         } else {
           print('No se pudo registrar el usuario');
