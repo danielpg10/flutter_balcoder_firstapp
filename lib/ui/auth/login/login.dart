@@ -7,7 +7,6 @@ import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/text_form_validator_mixin.dart';
 import 'package:balcoder_flutter_second/ui/gallery/gallery_widget.dart';
-import 'package:balcoder_flutter_second/main.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -42,7 +41,7 @@ class _LoginState extends State<Login> with TextFormValidator {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 5,
                   blurRadius: 7,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -153,11 +152,11 @@ class _LoginState extends State<Login> with TextFormValidator {
     );
   }
 
-  void _navigateToGallery() {
+  void _navigateToGallery(String userName) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GalleryWidget(isAuthenticated: true),
+        builder: (context) => GalleryWidget(isAuthenticated: true, userName: userName),
       ),
     );
   }
@@ -171,8 +170,9 @@ class _LoginState extends State<Login> with TextFormValidator {
         );
 
         if (userCredential.user != null) {
-          print(userCredential.user!.uid);
-          _navigateToGallery();
+          User? user = userCredential.user;
+          String userName = user?.displayName ?? 'Usuario';
+          _navigateToGallery(userName);
         } else {
           print('Este usuario no existe');
         }

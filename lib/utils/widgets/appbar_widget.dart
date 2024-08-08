@@ -1,5 +1,6 @@
 import 'package:balcoder_flutter_second/ui/auth/login/login.dart';
 import 'package:balcoder_flutter_second/ui/home/home_page.dart';
+import 'package:balcoder_flutter_second/ui/products/productos.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
@@ -66,6 +67,12 @@ class _AppbarWidgetState extends State<AppbarWidget> {
                       },
                       child: const Text("Inicio"),
                     ),
+                    TextButton (
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Productos()));
+                        },
+                        child: const Text("Productos"),
+                      ),
                     const SizedBox(width: 20),
                     TextButton(
                       onPressed: () {

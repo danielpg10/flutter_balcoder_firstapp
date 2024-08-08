@@ -6,6 +6,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String register = '/register';
   static const String gallery = 'gallery';
+  static const String products = 'products';
 }
 
 class AppRouter {
@@ -19,6 +20,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Register'));
       case AppRoutes.gallery:
         return MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Gallery'));
+      case AppRoutes.products:
+        return MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Products'));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

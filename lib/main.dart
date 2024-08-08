@@ -46,9 +46,11 @@ class AuthChecker extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData) {
-          return const GalleryWidget(isAuthenticated: true);
+          User? user = snapshot.data;
+          String userName = user?.displayName ?? 'Usuario';
+          return GalleryWidget(isAuthenticated: true, userName: userName);
         } else {
           return const Login();
         }

@@ -213,7 +213,7 @@ class _RegisterState extends State<Register> with TextFormValidator {
 
         if (userCredential.user != null) {
           print('Usuario registrado con UID: ${userCredential.user!.uid}');
-          await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+          await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({  
             'name': _nameController.text,
             'email': _emailController.text,
             'date_of_birth': _dateController.text,

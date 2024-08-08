@@ -1,6 +1,7 @@
 import 'package:balcoder_flutter_second/ui/auth/login/login.dart';
 import 'package:balcoder_flutter_second/ui/auth/register/register.dart';
 import 'package:balcoder_flutter_second/ui/gallery/gallery_widget.dart';
+import 'package:balcoder_flutter_second/ui/products/productos.dart';
 import 'package:flutter/material.dart';
 import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
 import 'package:balcoder_flutter_second/ui/home/home_page.dart';
@@ -55,8 +56,15 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             leading: const Icon(Icons.contact_phone_outlined, color: Colors.black),
             title: const Text("Galeria"),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryWidget(isAuthenticated: _isAuthenticated)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryWidget(isAuthenticated: _isAuthenticated, userName: '',)));
             }
+          ),
+          ListTile(
+            leading: const Icon(Icons.production_quantity_limits_sharp, color: Colors.black),
+            title: const Text("Productos"),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Productos()));
+            },
           ),
         ],
       ),
