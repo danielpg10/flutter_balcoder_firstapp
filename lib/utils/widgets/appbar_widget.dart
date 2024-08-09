@@ -22,41 +22,41 @@ class _AppbarWidgetState extends State<AppbarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        children: [
-          const Text("Aplicacion"),
-          const Spacer(),
-          if (_isSearching)
-            Expanded(
-              child: TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: 'Aqui puedes buscar lo que desees',
-                  border: InputBorder.none,
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () {
+      title: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          bool isAuthenticated = snapshot.hasData;
+          return Row(
+            children: [
+              Text(isAuthenticated ? "Administrador" : "Aplicación"),
+              const Spacer(),
+              if (_isSearching)
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: 'Aquí puedes buscar lo que desees',
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          setState(() {
+                            _isSearching = false;
+                            _searchController.clear();
+                          });
+                        },
+                      ),
+                    ),
+                    autofocus: true,
+                    onEditingComplete: () {
                       setState(() {
                         _isSearching = false;
-                        _searchController.clear();
                       });
                     },
                   ),
-                ),
-                autofocus: true,
-                onEditingComplete: () {
-                  setState(() {
-                    _isSearching = false;
-                  });
-                },
-              ),
-            )
-          else
-            StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                bool isAuthenticated = snapshot.hasData;
-                return Row(
+                )
+              else
+                Row(
                   children: [
                     TextButton(
                       onPressed: () {
@@ -67,12 +67,15 @@ class _AppbarWidgetState extends State<AppbarWidget> {
                       },
                       child: const Text("Inicio"),
                     ),
-                    TextButton (
+                    TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Productos()));
-                        },
-                        child: const Text("Productos"),
-                      ),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Productos()),
+                        );
+                      },
+                      child: const Text("Productos"),
+                    ),
                     const SizedBox(width: 20),
                     TextButton(
                       onPressed: () {
@@ -96,20 +99,20 @@ class _AppbarWidgetState extends State<AppbarWidget> {
                       ),
                     ),
                   ],
-                );
-              },
-            ),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              setState(() {
-                _isSearching = true;
-              });
-            },
-          ),
-          const SizedBox(width: 20),
-        ],
+                ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {
+                  setState(() {
+                    _isSearching = true;
+                  });
+                },
+              ),
+              const SizedBox(width: 20),
+            ],
+          );
+        },
       ),
     );
   }

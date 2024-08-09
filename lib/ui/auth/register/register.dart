@@ -25,9 +25,15 @@ class _RegisterState extends State<Register> with TextFormValidator {
 
   @override
   Widget build(BuildContext context) {
+    bool isAuthenticated = false;
+    String userName = '';
+
     return Scaffold(
       appBar: AppbarWidget(),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        isAuthenticated: isAuthenticated,
+        userName: userName,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

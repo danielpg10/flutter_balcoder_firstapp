@@ -1,5 +1,5 @@
 import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
-import 'package:balcoder_flutter_second/ui/gallery/gallery_widget.dart';
+import 'package:balcoder_flutter_second/ui/dashboard/dashboard_widget.dart';
 import 'package:balcoder_flutter_second/ui/auth/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -50,7 +50,7 @@ class AuthChecker extends StatelessWidget {
         } else if (snapshot.hasData) {
           User? user = snapshot.data;
           String userName = user?.displayName ?? 'Usuario';
-          return GalleryWidget(isAuthenticated: true, userName: userName);
+          return DashboardWidget(isAuthenticated: true, userName: userName);
         } else {
           return const Login();
         }

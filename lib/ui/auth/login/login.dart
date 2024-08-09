@@ -1,12 +1,13 @@
 import 'package:balcoder_flutter_second/ui/auth/register/register.dart';
+import 'package:balcoder_flutter_second/ui/dashboard/dashboard_widget.dart';
+import 'package:balcoder_flutter_second/ui/dashboard/dashboard_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
 import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
 import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
-import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
+import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart'; 
 import 'package:balcoder_flutter_second/utils/mixins/text_form_validator_mixin.dart';
-import 'package:balcoder_flutter_second/ui/gallery/gallery_widget.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -25,7 +26,10 @@ class _LoginState extends State<Login> with TextFormValidator {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppbarWidget(),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        isAuthenticated: false, 
+        userName: '',
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -153,10 +157,13 @@ class _LoginState extends State<Login> with TextFormValidator {
   }
 
   void _navigateToGallery(String userName) {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => GalleryWidget(isAuthenticated: true, userName: userName),
+        builder: (context) => DashboardWidget(
+          isAuthenticated: true,
+          userName: userName,
+        ),
       ),
     );
   }

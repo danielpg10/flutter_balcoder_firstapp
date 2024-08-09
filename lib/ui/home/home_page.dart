@@ -1,8 +1,8 @@
-import 'package:balcoder_flutter_second/ui/auth/register/register.dart';
 import 'package:flutter/material.dart';
+import 'package:balcoder_flutter_second/ui/auth/register/register.dart';
 import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
-import 'package:balcoder_flutter_second/ui/auth/register/register.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Aplicación',
       theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Inicio'),
     );
@@ -26,9 +28,15 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isAuthenticated = false;
+    String userName = '';
+
     return Scaffold(
       appBar: AppbarWidget(),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        isAuthenticated: isAuthenticated,
+        userName: userName,
+      ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(

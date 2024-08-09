@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:balcoder_flutter_second/main.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
-import 'package:balcoder_flutter_second/utils/routes/app_routes.dart';
-import 'package:balcoder_flutter_second/utils/theme/app_constats.dart';
 import 'package:balcoder_flutter_second/utils/widgets/appbar_widget.dart';
 
 class Productos extends StatefulWidget {
@@ -13,13 +10,19 @@ class Productos extends StatefulWidget {
 }
 
 class _ProductosState extends State<Productos> {
+  bool _isAuthenticated = false; 
+  String _userName = ''; 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppbarWidget(),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        isAuthenticated: _isAuthenticated,
+        userName: _userName,
+      ),
       body: Center(
-        child: Text("Aca van a ir todos los productos")
+        child: Text("Aca van a ir todos los productos"),
       ),
     );
   }
