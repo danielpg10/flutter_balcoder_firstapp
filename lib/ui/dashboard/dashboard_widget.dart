@@ -1,4 +1,5 @@
 import 'package:balcoder_flutter_second/ui/dashboard/gallery/gallery.dart';
+import 'package:balcoder_flutter_second/ui/dashboard/products/registerproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:balcoder_flutter_second/ui/auth/login/login.dart';
 import 'package:balcoder_flutter_second/utils/mixins/drawer_widget.dart';
@@ -111,8 +112,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 onTap: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Productos(),
+                                    MaterialPageRoute(builder: (context) => Registerproducts(),
                                     ),
                                   );
                                 },
