@@ -67,4 +67,47 @@ String? validatePassword(String? value) {
       return 'Por favor, introduce una contraseña valida';
     }
   }
+
+
+String? validateTitulo(String? value) {
+    String pattern = r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$';
+    RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty) {
+      return 'Por favor, ingresa el titulo del producto';
+    } else if (!regex.hasMatch(value)) {
+      return 'Por favor, ingresa un nombre valido';
+    }
+}
+
+
+String? validateDescription(String? value) {
+  if(value == null || value.isEmpty) {
+     return 'Por favor, ingresa la descripcion del producto';
+  }
+}
+
+
+String? validateUrl(String? value) {
+  String pattern = r'^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)([\/\w\-._~:?#@!$&()*+,;=]*)*\/?$';
+  RegExp regex = RegExp(pattern);
+  if(value == null || value.isEmpty) {
+    return 'Por favor, ingresa una url';
+  } else if (!regex.hasMatch(value)) {
+    return 'Por favor, ingresa una url válida';
+  }
+}
+
+
+String? validateImageFile(String? fileName) {
+    if (fileName == null || fileName.isEmpty) {
+      return 'Por favor, selecciona un archivo de imagen';
+    }
+
+    final RegExp imageRegex = RegExp(r'(\.jpg|\.jpeg|\.png|\.gif|\.bmp)$', caseSensitive: false);
+    if (!imageRegex.hasMatch(fileName)) {
+      return 'Por favor, selecciona un archivo de imagen válido';
+    }
+
+    return null;
+  }
 }
